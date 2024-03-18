@@ -1,0 +1,13 @@
+.NavButton-container {
+  padding: 20px;
+  display: inline-block;
+}
+
+.NavButton-button {
+  font-size: 26px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  background-color: #3F7FBF;
+  border: none;
+}

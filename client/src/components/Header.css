@@ -1,0 +1,18 @@
+.Header-login-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Header-login-name {
+  padding-left: 20px;
+}
+
+.Header-login-display {
+  padding-right: 20px;
+}
+
+.Header-navbar-container {
+  background-color: #3F7FBF;
+}
