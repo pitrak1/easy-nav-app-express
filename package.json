@@ -1,7 +1,6 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
+  "name": "easy-nav-app-express",
+  "version": "0.0.1",
   "engines": {
     "node": "20.x"
   },
