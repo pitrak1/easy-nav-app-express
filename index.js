@@ -1,9 +1,8 @@
 import express from 'express'
-import pg from 'pg'
-import path from 'path'
-import { fileURLToPath } from 'url'
 import register from './routes/register.js'
-import {PORT} from './routes/connect.js'
+import {authenticateMiddleware} from './utilities/auth.js'
+
+const PORT = process.env.PORT || 5001
 
 const app = express()
 
@@ -17,5 +16,6 @@ app.use((req, res, next) => {
 })
 
 app.post('/register', register)
+app.post('/register/auth', authenticateMiddleware, register)
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
