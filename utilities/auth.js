@@ -10,7 +10,7 @@ export const getHashedPassword = (password) => {
 }
 
 export const getJwtToken = (userId) => {
-	return jwt.sign({data: userId}, process.env.JWT_SECRET, { expiresIn: '1h' })
+	return jwt.sign({userId}, process.env.JWT_SECRET, { expiresIn: '1h' })
 }
 
 export const authenticateMiddleware = (req, res, next) => {
@@ -20,12 +20,12 @@ export const authenticateMiddleware = (req, res, next) => {
 		return res.sendStatus(401)
 	}
 
-	jwt.verify(token, process.env.JWT_SECRET, (err, userId) => {
+	jwt.verify(token, process.env.JWT_SECRET, (err, tokenInfo) => {
 		if (err) {
 			return res.sendStatus(403)
 		}
 
-		req.userId = userId
+		req.userId = tokenInfo.userId
 		next()
 	})
 }

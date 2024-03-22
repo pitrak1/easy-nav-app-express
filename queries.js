@@ -9,6 +9,16 @@ export const isUserExistingByName = async (name) => {
 	return result.rowCount > 0;
 }
 
+export const getUserByNameAndPasswordHash = async (name, passwordHash) => {
+	const result = await pool.query(`
+		SELECT id, name
+		FROM users
+		WHERE name = '${name}' AND password_hash = '${passwordHash}';
+	`)
+
+	return result.rows[0]
+}
+
 export const addUser = async (name, passwordHash) => {
 	const result = await pool.query(`
 		INSERT INTO users (name, password_hash) 
@@ -16,4 +26,13 @@ export const addUser = async (name, passwordHash) => {
 		RETURNING *;
 	`)
 	return result.rows[0]
+}
+
+export const getUserById = async (id) => {
+	const result = await pool.query(`
+		SELECT id, name 
+		FROM users
+		WHERE id = ${id};
+	`)
+d	return result.rows[0]
 }
