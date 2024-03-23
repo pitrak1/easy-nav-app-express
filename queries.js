@@ -34,5 +34,5 @@ export const getUserById = async (id) => {
 		FROM users
 		WHERE id = ${id};
 	`)
-d	return result.rows[0]
+	return result.rows[0]
 }
