@@ -10,9 +10,23 @@ const register = async (req, res) => {
 		});
 	}
 
+	const nameRegex = new RegExp('/^([a-zA-Z0-9_-]){8, 18}$/')
+	if (!nameRegex.test(name)) {
+		return res.status(400).json({
+			message: `Name must be between 8 and 18 alphanumeric characters`
+		});
+	}
+
 	if (!password) {
 		return res.status(400).json({
 			message: `Password is required`
+		});
+	}
+
+	const passwordRegex = new RegExp('/^.{8, 18}$/')
+	if (!passwordRegex.test(name)) {
+		return res.status(400).json({
+			message: `Password must be between 8 and 18 characters`
 		});
 	}
 
