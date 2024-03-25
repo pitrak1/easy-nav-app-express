@@ -1,4 +1,4 @@
-import {getUserById} from '../queries.js'
+import {getUserById} from '../db/queries.js'
 import {getHashedPassword, getJwtToken} from '../utilities/auth.js'
 
 const me = async (req, res) => {

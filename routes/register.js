@@ -1,4 +1,4 @@
-import {isUserExistingByName, addUser} from '../queries.js'
+import {isUserExistingByName, addUser} from '../db/queries.js'
 import {getHashedPassword, getJwtToken} from '../utilities/auth.js'
 
 const register = async (req, res) => {
@@ -10,7 +10,7 @@ const register = async (req, res) => {
 		});
 	}
 
-	const nameRegex = new RegExp('/^([a-zA-Z0-9_-]){8, 18}$/')
+	const nameRegex = new RegExp('^([a-zA-Z0-9_-]){8,18}$')
 	if (!nameRegex.test(name)) {
 		return res.status(400).json({
 			message: `Name must be between 8 and 18 alphanumeric characters`
@@ -23,7 +23,7 @@ const register = async (req, res) => {
 		});
 	}
 
-	const passwordRegex = new RegExp('/^.{8, 18}$/')
+	const passwordRegex = new RegExp('^.{8,18}$')
 	if (!passwordRegex.test(name)) {
 		return res.status(400).json({
 			message: `Password must be between 8 and 18 characters`
