@@ -1,7 +1,8 @@
 import express from 'express'
-import register from './routes/register.js'
-import login from './routes/login.js'
-import me from './routes/me.js'
+import postRegister from './routes/postRegister.js'
+import postLogin from './routes/postLogin.js'
+import getProfile from './routes/getProfile.js'
+import postBlogs from './routes/postBlogs.js'
 import {authenticateMiddleware} from './utilities/auth.js'
 
 const PORT = process.env.PORT || 5001
@@ -17,8 +18,9 @@ app.use((req, res, next) => {
   next()
 })
 
-app.post('/register', register)
-app.post('/login', login)
-app.get('/me', authenticateMiddleware, me)
+app.post('/register', postRegister)
+app.post('/login', postLogin)
+app.get('/profile', authenticateMiddleware, getProfile)
+app.post('/blogs', authenticateMiddleware, postBlogs)
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))

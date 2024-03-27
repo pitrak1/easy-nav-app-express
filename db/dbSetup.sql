@@ -3,3 +3,16 @@ CREATE TABLE IF NOT EXISTS users (
 	name TEXT NOT NULL,
 	password_hash TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS blogs {
+	id SERIAL PRIMARY KEY,
+	name TEXT NOT NULL,
+	user_id INT NOT NULL REFERENCES users(id)
+};
+
+CREATE TABLE IF NOT EXISTS posts {
+	id SERIAL PRIMARY KEY,
+	name TEXT NOT NULL,
+	blog_id INT NOT NULL REFERENCES blogs(id),
+	contents TEXT NOT NULL
+};

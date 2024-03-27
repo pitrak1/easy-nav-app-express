@@ -1,7 +1,7 @@
-import {getUserByNameAndPasswordHash} from '../queries.js'
+import {getUserByNameAndPasswordHash} from '../db/queries.js'
 import {getHashedPassword, getJwtToken} from '../utilities/auth.js'
 
-const login = async (req, res) => {
+const postLogin = async (req, res) => {
 	const {name, password} = req.body
 
 	if (!name) {
@@ -22,7 +22,7 @@ const login = async (req, res) => {
 		const user = await getUserByNameAndPasswordHash(name, hashedPassword);
 		const token = getJwtToken(user.id)
 		
-		return res.status(200).json({token})
+		return res.status(200).json({token, user})
 	} catch (err) {
 		return res.status(500).json({
 			message: `Cannot login user`,
@@ -31,4 +31,4 @@ const login = async (req, res) => {
 	}
 }
 
-export default login;
+export default postLogin;

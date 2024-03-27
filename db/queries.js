@@ -36,3 +36,23 @@ export const getUserById = async (id) => {
 	`)
 	return result.rows[0]
 }
+
+export const getProfileBlogs = async (id) => {
+	const result = await pool.query(`
+		SELECT blogs.id, blogs.name, blogs.user_id, COUNT(posts.id)
+		FROM blogs
+		LEFT JOIN posts ON blogs.id = posts.blog_id
+		WHERE user_id = ${id}
+		GROUP BY blogs.id;
+	`)
+	return result.rows
+}
+
+export const createBlog = async (name, userId) => {
+	const result = await pool.query(`
+		INSERT INTO blogs (name, user_id)
+		VALUES ('${name}', ${userId})
+		RETURNING *;
+	`)
+	return result.rows[0]
+}

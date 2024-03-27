@@ -1,7 +1,7 @@
 import {isUserExistingByName, addUser} from '../db/queries.js'
 import {getHashedPassword, getJwtToken} from '../utilities/auth.js'
 
-const register = async (req, res) => {
+const postRegister = async (req, res) => {
 	const {name, password, confirmPassword} = req.body
 
 	if (!name) {
@@ -48,7 +48,7 @@ const register = async (req, res) => {
 		const user = await addUser(name, hashedPassword);
 		const token = getJwtToken(user.id)
 		
-		return res.status(200).json({token})
+		return res.status(200).json({token, user})
 	} catch (err) {
 		return res.status(500).json({
 			message: `User not successfully created`,
@@ -57,4 +57,4 @@ const register = async (req, res) => {
 	}
 }
 
-export default register;
+export default postRegister;
