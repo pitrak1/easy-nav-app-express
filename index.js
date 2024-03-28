@@ -3,6 +3,8 @@ import postRegister from './routes/postRegister.js'
 import postLogin from './routes/postLogin.js'
 import getProfile from './routes/getProfile.js'
 import postBlogs from './routes/postBlogs.js'
+import getBlog from './routes/getBlog.js'
+import postBlogPosts from './routes/postBlogPosts.js'
 import { authenticateMiddleware } from './utilities/auth.js'
 
 const PORT = process.env.PORT || 5001
@@ -22,5 +24,7 @@ app.post('/register', postRegister)
 app.post('/login', postLogin)
 app.get('/profile', authenticateMiddleware, getProfile)
 app.post('/blogs', authenticateMiddleware, postBlogs)
+app.get('/blogs/:blogId', authenticateMiddleware, getBlog)
+app.post('/blogs/:blogId/posts', authenticateMiddleware, postBlogPosts)
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`))
