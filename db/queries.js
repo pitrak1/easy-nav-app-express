@@ -58,7 +58,7 @@ export const createBlog = async (name, userId) => {
 
 export const getPostsByBlogId = async (blogId) => {
   const result = await pool.query(`
-    SELECT posts.id, posts.name, posts.contents
+    SELECT posts.id, posts.name, posts.contents, posts.blog_id
     FROM posts
     WHERE blog_id = ${blogId};
   `)
@@ -70,6 +70,15 @@ export const createBlogPost = async (blogId, name, contents) => {
     INSERT INTO posts (name, blog_id, contents)
     VALUES ('${name}', ${blogId}, '${contents}')
     RETURNING *;
+  `)
+  return result.rows[0]
+}
+
+export const getBlogPostById = async (blogId, postId) => {
+  const result = await pool.query(`
+    SELECT posts.id, posts.name, posts.contents, posts.blog_id
+    FROM posts
+    WHERE blog_id = ${blogId} AND id = ${postId};
   `)
   return result.rows[0]
 }
