@@ -16,10 +16,10 @@
     ]
   },
   "dependencies": {
-    "ejs": "^3.1.9",
-    "express": "^4.15.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
-    "pg": "^8.11.3"
+    "pg": "^8.11.5"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
@@ -27,8 +27,8 @@
     "eslint-config-standard-jsx": "^11.0.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-promise": "^6.2.0",
+    "eslint-plugin-react": "^7.34.2",
     "tape": "^5.7.4"
   },
   "repository": {
